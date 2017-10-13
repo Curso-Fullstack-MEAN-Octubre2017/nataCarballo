@@ -4,12 +4,12 @@ module.exports = (router) => {
 	// listar todos los clientes
 	
 	router.get('/customers', (req, res, next)=> {
-		Customer.find({}, (err, Customer)=> {
+		Customer.find({}, (err, customer)=> {
 			if (err){
-				console.log(err);
+				console.error(err);
 				return next();
 			}
-			return res.json(Customer);
+			return res.json(customer);
 	    });
 		
 	});
@@ -20,7 +20,7 @@ module.exports = (router) => {
 		
 		Customer.findById({_id: req.params.id}, (err, customer)=>{
 			if (err){
-				console.log(err);
+				console.error(err);
 				return next(err);
 			}
 			
@@ -51,7 +51,7 @@ module.exports = (router) => {
 			
 		customerNew.save((err)=>{
 			if (err){
-				console.log(err);
+				console.error(err);
 				return next(err);
 			}else{
 				return res.redirect('/customer');
@@ -65,7 +65,7 @@ module.exports = (router) => {
 	router.put('/customers/:id',(req, res, next)=>{
 		Customer.findByIdAndUpdate(req.params.id, req.body, (err, response)=>{
 				if (err){
-					console.log(response);
+					console.error(err);
 				return next(err);
 			}
 		});

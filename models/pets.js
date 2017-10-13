@@ -1,22 +1,21 @@
-var mongoose = require('mongoose'),
+const mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 	mongoose.Promise = global.Promise;
 
-var customer= mongoose.model('customer');
+var Customer= mongoose.model('Customer');
 
 
-var petsSchema = new Schema({
-	name:{type: String, required: true},
-	chip:{type: String, required: true},
-	//photo:{},
-	//birthDate:{type: String, required: true},
-	race:{type: String},
-	species:{type: String},
-	descripcion:{type: String, required: true},
-	sex:{type: String, required: true},
-	vet:{type: String, required: true},
-	//customer: {type: Schema.ObjectId, ref: "customer"}
+var petSchema = new Schema({
+	    name: {type: String, required: true},
+	    birthdate: {type: Date, required: true},
+	    chipNumber: {type: String, required: true},
+	    specie: {type: String, required: true},
+	    race: {type: String, required: true},
+	    description: {type: String},
+	    photoUrl: {type: String, required: true},
+	    ownerId: {type: Schema.ObjectId, ref: "Customer", required: true}
 	
 });
 
-module.exports = mongoose.model("Pets", petsSchema);
+module.exports = mongoose.model("Pet", petSchema);
+

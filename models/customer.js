@@ -1,21 +1,23 @@
 var mongoose = require('mongoose');
 
-	mongoose.Promise = global.Promise;
+	//mongoose.Promise = global.Promise;
 
 var Schema = mongoose.Schema;
 
 
 var customerSchema = new Schema({
-	dni:{type: String},
-	firstName:{type: String},
-	lastName:{type: String},
-	phone:{type: String},
+	dni:{type: String, required: true},
+	firstName:{type: String, required: true},
+	lastName:{type: String, required: true},
+	phone:{type: String, required: true},
 	email:{type: String},
 	note:{type: String},
-	//customer: {type: Schema.ObjectId, ref: "pets"}
+	
 
 });
-
+customerSchema.pre('save',(next)=>{	
+	next();
+});
 module.exports= mongoose.model('Customer', customerSchema); //cambio el nombre a Customer
 
 
