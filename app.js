@@ -5,7 +5,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-//var sample = require('./routes/sample');
+const router = express.Router();
+
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/petStore', { useMongoClient: true });
 
 var app = express();
 
@@ -22,7 +25,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //// Nuevas Rutas van aqui:
-//app.use('/sample', sample);
+app.use('/api', require('./routes/customers')(router));
+//app.use('/api', require('./routes/pets')(router));
 
 //Front End
 app.all("*", (req, res) => {

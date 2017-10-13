@@ -10,7 +10,7 @@ angular.module('petStore')
             .when("/",{
                 template: "Pet Store Demo (Hello World) <a ng-href='sample'>Sample Module</a>"
             })
-            .when("/sample",{
+            .when("/customer",{
                 template: "<sample-module></sample-module>"
             })
             .otherwise({
