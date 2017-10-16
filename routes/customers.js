@@ -1,4 +1,5 @@
 const Customer = require('../models/customer');
+const Pets = require('../models/pets');
 
 module.exports = (router) => {
 	// listar todos los clientes
@@ -22,6 +23,15 @@ module.exports = (router) => {
 		});
 	});
 
+	router.get('/customers/:id/pets',(req, res)=> {
+		Pets.find({customerId: req.params.id},(err, pets)=> {
+			if (err) {
+				console.error(err);
+			} else {
+				res.json(pets);
+			}
+		});
+	});
 	//nuevo cliente
 	
 	router.post('/customers', (req, res) => {

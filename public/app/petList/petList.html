@@ -1,0 +1,20 @@
+ <div ng-controller="PetListController">
+ 
+ <h3>lista de mascotas</h3>
+ <table>
+		<thead>
+ 				<th>ID</th>
+               	<th>Nombre</th>
+               	<th>Especie</th>
+               	<th>Chip</th>
+        </thead>
+         <tr data-ng-repeat="pet in pets">
+<!--                    <td><img src=""></td> -->
+                    	<td>{{pet._id}}</td>
+                    	<td>{{pet.name}}</td>
+                    	<td>{{pet.specie}}</td>
+                    	<td>{{pet.chipNumber}}</td>
+                    	<td><a href="/pets/{{pet._id}}"><button class="btn"> Ver mascota</button> </a></td>
+		</tr> 
+</table>
+<th> </th> 

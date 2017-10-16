@@ -26,14 +26,14 @@
      		$scope.customerPets = []
      	}
  
-     	$scope.insert =()=> {
+     	$scope.submit =()=> {
      		console.log("añadir customer:", $scope.customer);
      		$http.post("/api/customers", $scope.customer).then((response)=>{
      			$scope.customer = response.data;
      		});
      	}
  
-     	$scope.update = ()=> {
+     	$scope.edit = ()=> {
      		console.log("Borrar customer:", $scope.customer);
      		$http.put("/api/customers/" + $scope.customer._id, $scope.customer).then((response)=>{
      			$scope.customer = response.data;
