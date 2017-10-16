@@ -7,13 +7,19 @@ angular.module('petStore')
     ){
         $locationProvider.html5Mode({ enabled: true });
         $routeProvider
+            
             .when("/",{
-                template: "Pet Store Demo (Hello World) <a ng-href='sample'>Sample Module</a>"
+                template: "<customer-list-module></customer-list-module>"
             })
-            .when("/customer",{
-                template: "<sample-module></sample-module>"
+            .when("/customers/",{
+                template: "<customer-details-module></customer-details-module>"
+            })
+            .when("/customers/:id",{
+            	template: "<customer-details-module></customer-details-module>"
             })
             .otherwise({
-                template: "Other"
+                  template: "Other"
             });
     });
+
+

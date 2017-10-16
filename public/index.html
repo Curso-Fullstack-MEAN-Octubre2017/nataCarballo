@@ -3,7 +3,7 @@
 <head>
 	<base href="/">
 	<meta charset="UTF-8">
-	<title>PetStore Demo with AngularJs+Express+NodeJs+MongoDb</title>
+	<title>PetStore</title>
 	<link rel="stylesheet" href="/stylesheets/style.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -19,15 +19,21 @@
 	<script src="/app/app.module.js"></script>
 	<script src="/app/app.config.js"></script>
 	
-	<script src="/app/sample-module/sample-module.module.js"></script>
-	<script src="/app/sample-module/sample-module.component.js"></script>
+
+	<script src="/app/customerList/customerList.Component.js"></script>
+	<script src="/app/customerDetails/customerDetails.Component.js"></script>
 
 	</head>
 <body>
-
+	
+	<a href="/">Lista de Clientes</a>
+	<a href="/customers/">Añadir Cliente</a>
+	
 	<div id="" class="ventana">
 		<div ng-view></div>
 	</div>
 
 </body>
 </html>
+
+	

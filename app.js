@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //// Nuevas Rutas van aqui:
 app.use('/api', require('./routes/customers')(router));
-//app.use('/api', require('./routes/pets')(router));
+app.use('/api', require('./routes/pets')(router));
 
 //Front End
 app.all("*", (req, res) => {

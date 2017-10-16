@@ -3,7 +3,7 @@ const Customer = require('../models/customer');
 module.exports = (router) => {
 	// listar todos los clientes
 	
-	router.get('/customers', (req, res, next)=> {
+	router.get('/', (req, res, next)=> {
 		Customer.find({}, (err, customer)=> {
 			if (err){
 				console.error(err);
@@ -16,70 +16,66 @@ module.exports = (router) => {
 	
 	//buscar por id
 	
-	router.get('/customers/:id',(req, res, next)=>{
-		
-		Customer.findById({_id: req.params.id}, (err, customer)=>{
-			if (err){
-				console.error(err);
-				return next(err);
-			}
-			
-			return res.json({name: customer.firstName, apellido:customer.lastName});
+	router.get('/customers/:id',(req, res)=> {
+		Customer.findById({_id:req.params.id}, (err, Customer)=> {
+			res.json(Customer);
 		});
 	});
-	
+
 	//nuevo cliente
 	
-	router.post('/customers',(req, res, next)=>{
-	
-		var dni=req.body.dni || '';
-		var firstName= req.body.firstName || '';
-		var lastName= req.body.lastName || '';
-		var phone= req.body.phone || '';
-		var email= req.body.email || '';
-		var note= req.body.note || '';
-		
-	
-		var customerNew = new Customer({
-					dni: dni,
-					firstName: firstName,
-					lastName: lastName,
-					phone: phone,
-					email: email,
-					note: note
-				});
-			
-		customerNew.save((err)=>{
-			if (err){
-				console.error(err);
-				return next(err);
-			}else{
-				return res.redirect('/customer');
-				console.log('guardado');
-			}
-		});
+	router.post('/customers', (req, res) => {
+		   var customer = new Customer(req.body);
+
+		   customer.save((err) => {
+				if (err) {
+					console.error(err);
+					res.status(500).send(err);//KO
+				} else {
+					res.json(customer);
+				}
+			}) ;   
 	});
 	
 	// modificar
-	
-	router.put('/customers/:id',(req, res, next)=>{
-		Customer.findByIdAndUpdate(req.params.id, req.body, (err, response)=>{
-				if (err){
-					console.error(err);
-				return next(err);
+/*	router.put('/customers/:id', (req, res, next) => {
+		Customer.findOne({_id : req.params.id }, (err, customer)=> {
+			if (err) {
+				return res.send(err);
 			}
+
+			for(prop in req.body){
+				customer[prop] = req.body[prop];
+			}
+			
+			console.log("Actualizando cliente", customer);
+			
+
+			customer.save(function(err) {
+				if (err) {
+					console.error(err);
+				} else {
+					res.json(customer);
+				}
+			});
 		});
 	});
 	
+	
+	
 	//////////////eliminar
-	
-	router.delete('/customers/:id', (req, res)=>{
-	    Customer.findByIdAndRemove(req.params.id, (err, response)=>{
-	        if(err) res.json({message: "Error in deleting record id " + req.params.id});
-	        else res.json({message: "El cliente con id  " + req.params.id + " ha sido borrado."});
-	    });
-	});
-	
+
+	router.delete('/customers/:id',(req, res)=> {
+		//console.log("/customers/" + req.params.id);
+		Customer.findByIdAndRemove({_id : req.params.id }, (err, customer)=> {
+			if (err) {
+				console.error(err);
+			} else {
+				res.sendStatus(200);
+				res.json({message: "El cliente con id  " + req.params.id + " ha sido borrado."});
+			}
+		});
+	});*/
 	
 	return router;
 }

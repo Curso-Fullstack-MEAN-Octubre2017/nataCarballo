@@ -1,0 +1,28 @@
+
+
+<div ng-controller="CustomerDetailsController">
+
+Detalle cliente número:  {{customer._id}}
+<br><br><br><br><br>
+
+Dni:<input type="text" ng-model="customer.dni" placeholder="" /><br>
+Nombre:<input type="text" ng-model="customer.firstName" placeholder="" /><br>
+Apellido:<input type="text" ng-model="customer.lastName" placeholder="" /><br>
+Telefono:<input type="text" ng-model="customer.phone" placeholder="" /><br>
+Email:<input type="text" ng-model="customer.email" placeholder="" /><br>
+Note:<input type="text" ng-model="customer.note" placeholder="" /><br>
+<br><br><br><br><br>
+
+Lista mascotas
+	<br><br><br>
+
+
+<ul>
+	<li ng-repeat="pet in customerPets">{{pet}}</li>
+</ul>
+
+<br>
+<input type="button" ng-show="isNew()" ng-click="insert()" value="Nuevo">
+<!-- <input type="button" ng-show="!isNew()" ng-click="update()" value="Borrar"> -->
+
+</div>
