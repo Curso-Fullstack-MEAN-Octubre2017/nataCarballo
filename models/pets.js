@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-//const Customer= mongoose.model('Customer');
+const Customer= mongoose.model('Customer');
 
 
 const petSchema = new Schema({
 	    name: {type: String, required: true},
-	    birthdate: {type: Date, required: true},
+	    birthdate: {type: String, required: true},
 	    chipNumber: {type: String, required: true},
 	    specie: {type: String, required: true},
 	    race: {type: String, required: true},

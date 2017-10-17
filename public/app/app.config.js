@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('petStore')
-    .config((
+    .config(function(
         $locationProvider,
         $routeProvider
-    )=>{
+    ){
         $locationProvider.html5Mode({ enabled: true });
         $routeProvider
             
@@ -17,9 +17,9 @@ angular.module('petStore')
             .when("/customers/:id",{
             	template: "<customer-details-module></customer-details-module>"
             })
-            .when("/pets",{
+            /*.when("/pets/",{
                 template: "<pets-list-module></pets-list-module>" 
-            })
+            })*/
             .when("/pets/:id",{
                 template: "<pet-details-module></pet-details-module>" 
             })

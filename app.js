@@ -28,6 +28,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api', require('./routes/customers')(router));
 app.use('/api', require('./routes/pets')(router));
 
+
+//require('./text/pet_crud_test.js');// añadir nueva mascota
+
+
+
 //Front End
 app.all("*", (req, res) => {
 res.sendFile(path.resolve("public/index.html"));

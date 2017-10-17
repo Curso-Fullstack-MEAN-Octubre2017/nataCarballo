@@ -1,9 +1,9 @@
 'use strict';
 
- angular.module('PetDetailsModule', []);
+ angular.module('petDetailsModule', []);
  
- angular.module('PetDetailsModule')
-     .component('PetDetailsModule', {
+ angular.module('petDetailsModule')
+     .component('petDetailsModule', {
          templateUrl:'/app/petDetails/petDetails.html',
          controller: ($scope, $http)=> {
              console.log("Incializando detalle mascotas.");
@@ -22,7 +22,7 @@
     		// hacer if para localizar el id del cliente
     	}
 
-    	$scope.submit = function() {
+    	/*$scope.submit = function() {
     		console.log("Añadir mascota:", $scope.pet);
     		$http.post("/api/pets", $scope.pet).then((response)=>{
     			$scope.pet = response.data;
@@ -30,10 +30,10 @@
     	}
 
     	$scope.edit = ()=>{
-    		console.log("Update pet:", $scope.pet);
+    		console.log("borrar pet:", $scope.pet);
     		$http.put("/api/pets/" + $scope.pet._id, $scope.pet).then((response)=>{
     			$scope.pet = response.data;
     		});
-    	}
+    	}*/
     	
 });

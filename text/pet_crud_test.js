@@ -11,15 +11,15 @@ var unCustomer = {
 		"note": "gfdsgfdsgfdsgf"
 	};
 
-var pet1 = 	{
-		"name" : "fdsafdsaf",
-		"birthdate" : "fgdsgfd",
-		"specie" : "fgdsgf",
-		"race" : "Snowshoe",
-		"chipNumber" : "gfdsgf",
-		"photoUrl" : "asdf",
-		"description" : "gfdsgfdsgfd.",
-		"ownerId" : "59e05e129fce8e185cde97f6 "
+var pet4 = 	{
+		"name" : "Atomos",
+		"birthdate" : "abril 2000",
+		"specie" : "gato",
+		"race" : "persa",
+		"chipNumber" : "55555fdd",
+		"photoUrl" : "aaaaaa",
+		"description" : "hembra",
+		"customerId" : "59e05e129fce8e185cde97f6"
 	};
 
 function testInsertUN() {
@@ -34,7 +34,7 @@ function testInsertUN() {
 }
 
 function testInsertPet() {
-	const pet = new Pet(pet1);
+	const pet = new Pet(pet4);
 	pet.save((err) => {
 		if (err) {
 			console.error(err);

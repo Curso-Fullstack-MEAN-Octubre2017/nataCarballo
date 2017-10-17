@@ -48,7 +48,7 @@ module.exports = (router) => {
 	});
 	
 	// modificar
-/*	router.put('/customers/:id', (req, res, next) => {
+	router.put('/customers/:id', (req, res, next) => {
 		Customer.findOne({_id : req.params.id }, (err, customer)=> {
 			if (err) {
 				return res.send(err);
@@ -75,7 +75,7 @@ module.exports = (router) => {
 	
 	//////////////eliminar
 
-	router.delete('/customers/:id',(req, res)=> {
+	/*router.delete('/customers/:id',(req, res)=> {
 		//console.log("/customers/" + req.params.id);
 		Customer.findByIdAndRemove({_id : req.params.id }, (err, customer)=> {
 			if (err) {

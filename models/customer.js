@@ -11,6 +11,6 @@ const customerSchema = new Schema({
 	note:{type: String},
 });
 
-																	//customerSchema.pre('save',(next)=>{next();});
+customerSchema.pre('save',(next)=>{next();});
 
 module.exports= mongoose.model('Customer', customerSchema); 

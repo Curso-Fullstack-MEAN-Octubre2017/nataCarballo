@@ -23,7 +23,7 @@
  	    	});	    	
      	} else {
      		$scope.customer = {};
-     		$scope.customerPets = []
+     		$scope.customerPets = [];
      	}
  
      	$scope.submit =()=> {
@@ -33,12 +33,15 @@
      		});
      	}
  
-     	$scope.edit = ()=> {
-     		console.log("Borrar customer:", $scope.customer);
+     	$scope.update = ()=> {
+     		console.log("Modificar customer:", $scope.customer);
      		$http.put("/api/customers/" + $scope.customer._id, $scope.customer).then((response)=>{
      			$scope.customer = response.data;
+     			console.log("cambios guardados");
+     			history.back();//volver atras en el historial
      		});
      	}
+     	
      	
      	$scope.isNew = ()=> {
      		return $scope.customer === undefined || $scope.customer._id === undefined;
