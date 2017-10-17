@@ -8,7 +8,7 @@ module.exports = (router) => {
 	router.get('/pets',(req, res)=> {
 		Pet.find({}, (err, pet)=> {
 		res.json(pet);
-	   });
+	   }).sort({'_id' : -1});
 	});
 	
 	router.get('/pets',(req, res)=> {
@@ -18,6 +18,7 @@ module.exports = (router) => {
 		res.send(200, pets);
 	   });
 	});
+	
 	//buscar por id
 	router.get('/pets/:id',(req, res)=> {
 		Pet.findById({_id:req.params.id}, (err, pets)=> {
@@ -25,26 +26,46 @@ module.exports = (router) => {
 		});
 	});
 	//nueva mascota
+	
 
 	router.post('/pets',(req, res, next)=>{
 
 		var pet = new Pet(req.body);
 			
 		pet.save((err)=>{
-			if (err){
-				console.error(err);
-				return next(err);
-			}else res.json(pet);
+			if (err)return next(err);
+			res.json(pet);
 		});
 	});
-		//falta modificar y eliminar
+	
+	//modificar
+	router.put('/pets/:id', (req, res, next) => {
+		Pet.findOne({_id : req.params.id },(err, pet)=> {
+			if (err) return res.send(err);
+	
+			for(prop in req.body){
+				pet[prop] = req.body[prop];
+			}
+			
+			console.log("Actualizando mascota", pet);
+
+			pet.save((err)=> {
+				if (err) console.error(err);
+					res.json(pet);
+			});
+		});
+	});	
+	
+	//borrar
+	router.delete('/pets/:id',(req, res)=> {
+		console.log("/pets/" + req.params.id);
+		Pet.findByIdAndRemove(req.params.id,(err, pet)=> {
+			if (err) console.error(err);
+				res.sendStatus(200);
+		});
+	});
 	return router;
 }
-
-
-
-
-
 
 
 

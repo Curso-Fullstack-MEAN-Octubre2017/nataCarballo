@@ -1,16 +1,22 @@
-<div ng-controller="PetDetailsController">
+<div data-ng-controller="PetDetailsController">
+PetDetailsController: {{pet._id}}<br />
 <br><br><br><br><br>
 <h4 class="title">petstore</h4>
-		<th>ID</th>
-        <th>Nombre</th>
-        <th>Especie</th>
-		<th>Chip</th> 
-		
-		 <tr data-ng-repeat="pet in pets">
-<!--                    <td><img src=""></td> -->
-                    	<td>{{pet._id}}</td>
-                    	<td>{{pet.name}}</td>
-                    	<td>{{pet.specie}}</td>
-                    	<td>{{pet.chipNumber}}</td>
-                    	<td><a href="/pets/{{pet._id}}"><button class="btn"> Ver mascota</button> </a></td>
-		</tr>
+
+
+Nombre:<input type="text" data-ng-model="pet.name" placeholder="" /><br />
+Nacimiento:<input type="text" data-ng-model="pet.birthdate" placeholder="" /><br />
+Especie:<input type="text" data-ng-model="pet.specie" placeholder="" /><br />
+Raza:<input type="text" data-ng-model="pet.race" placeholder="" /><br />
+Chip:<input type="text" data-ng-model="pet.chipNumber" placeholder="" /><br />
+Foto:<input type="text" data-ng-model="pet.photoUrl" placeholder="" /><br />
+ID cliente:<input type="text" data-ng-model="pet.customerId" placeholder="" /><br />
+Descripción <textarea data-ng-model="pet.description"></textarea>
+
+<br /> <br />
+
+<input type="button" data-ng-show="isNew()" data-ng-click="insert()" value="nueva">
+<input type="button" data-ng-show="!isNew()" data-ng-click="update()" value="modificar">
+<input type="button" data-ng-show="!isNew()" data-ng-click="remove()" value="borrar">
+
+</div>

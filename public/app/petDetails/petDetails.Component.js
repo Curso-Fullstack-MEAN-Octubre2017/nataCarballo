@@ -12,28 +12,43 @@
     .controller('PetDetailsController',($scope, $http, $location, $routeParams)=>{
     	console.log("inicializando el PetDetailsController...");
     	
-    	if(isNaN(+$routeParams.id)) {
+    	//if(isNaN(+$routeParams.id)) {
+    	if(typeof $routeParams.id !== 'undefined') {
 	    	$http.get("/api/pets/" + $routeParams.id).then((response)=>{
 	    		console.log("Response /api/pets/" + $routeParams.id, response);
 	    		$scope.pet = response.data;
 	    	});    	
     	} else {
-    		$scope.pet = {};
-    		// hacer if para localizar el id del cliente
+    		console.log("ID cliente: " + $routeParams.customerId);
+     		$scope.pet = {};
+     		$scope.pet.customerId = $routeParams.customerId;
     	}
 
-    	/*$scope.submit = function() {
+    	scope.insert = ()=> {
     		console.log("Añadir mascota:", $scope.pet);
     		$http.post("/api/pets", $scope.pet).then((response)=>{
     			$scope.pet = response.data;
     		});
     	}
 
-    	$scope.edit = ()=>{
-    		console.log("borrar pet:", $scope.pet);
+    	$scope.uptade = ()=>{
+    		console.log("modificar mascota:", $scope.pet);
     		$http.put("/api/pets/" + $scope.pet._id, $scope.pet).then((response)=>{
     			$scope.pet = response.data;
     		});
-    	}*/
+    	}
+    	
+    	$scope.remove = ()=>{
+     		console.log("Borrar mascota:", $scope.pet);
+     		$http.delete("/api/pets/" + $scope.pet._id).then((response)=>{
+     			history.back();
+     		});
+    	}
+    	$scope.isNew =()=> {
+     		return $scope.pet === undefined || $scope.pet._id === undefined;
+     	}
     	
 });
+
+     	
+     	
