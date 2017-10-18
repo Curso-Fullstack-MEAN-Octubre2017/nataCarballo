@@ -1,8 +1,18 @@
 const Pet = require('../models/pets');
 const Customer = require('../models/customer');
+const Appointment = require('../models/appointment');
+
+var  tresAppointment={
+		
+		"dateStart":"19/10/2017 10:00",
+		"dateEnd":"19/10/2017 10:30",
+		"petId":"59e5f275e810211f68f8a6fa", 
+		"vetId":"tggg otra tres",
+		"status":[-1]
+};
 
 
-var unCustomer = {
+/*var unCustomer = {
 		"dni": "fgdsgfds",
 		"firstName": "fdsgfd",
 		"lastName": "gfds",
@@ -20,9 +30,9 @@ var pet4 = 	{
 		"photoUrl" : "aaaaaa",
 		"description" : "hembra",
 		"customerId" : "59e05e129fce8e185cde97f6"
-	};
+	};*/
 
-function testInsertUN() {
+/*function testInsertUN() {
 	const customer = new Customer(unCustomer);
 	customer.save((err) => {
 		if (err) {
@@ -31,9 +41,9 @@ function testInsertUN() {
 			console.log("testInsert", customer);
 		}
 	})
-}
+}*/
 
-function testInsertPet() {
+/*function testInsertPet() {
 	const pet = new Pet(pet4);
 	pet.save((err) => {
 		if (err) {
@@ -42,9 +52,22 @@ function testInsertPet() {
 			console.log("testInsertPet", pet);
 		}
 	})
+}*/
+function testInsertUn() {
+	const appointment = new Appointment(tresAppointment);
+	appointment.save((err) => {
+		if (err) {
+			console.error(err);
+		} else {
+			console.log("testInsert", appointment);
+		}
+	})
 }
+testInsertUn();
 
-function testSearchCustomers() {
+
+
+/*function testSearchCustomers() {
 	var search = {};
 	var regexp = new RegExp("gonzalez", "i")
 	search.firstName = regexp;
@@ -58,8 +81,8 @@ function testSearchCustomers() {
 			console.log("testSearchCustomers", customers);
 		}
 	}).sort({'_id' : -1});
-}
+}*/
 
-//testInsertMiki();
-testInsertPet();
-//testSearchCustomers();
+
+//testInsertPet();
+

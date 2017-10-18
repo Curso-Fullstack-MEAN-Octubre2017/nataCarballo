@@ -24,7 +24,7 @@
      		$scope.pet.customerId = $routeParams.customerId;
     	}
 
-    	scope.insert = ()=> {
+    	$scope.insert = ()=> {
     		console.log("Añadir mascota:", $scope.pet);
     		$http.post("/api/pets", $scope.pet).then((response)=>{
     			$scope.pet = response.data;
@@ -37,10 +37,12 @@
     			$scope.pet = response.data;
     		});
     	}
+    
     	
     	$scope.remove = ()=>{
      		console.log("Borrar mascota:", $scope.pet);
-     		$http.delete("/api/pets/" + $scope.pet._id).then((response)=>{
+     		$http.delete("/api/pets/" + $scope.pet._id,$scope.pet).then((response)=>{
+     			$scope.pet=response.data;
      			history.back();
      		});
     	}

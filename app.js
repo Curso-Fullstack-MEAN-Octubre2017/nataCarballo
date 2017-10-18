@@ -27,9 +27,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 //// Nuevas Rutas van aqui:
 app.use('/api', require('./routes/customers')(router));
 app.use('/api', require('./routes/pets')(router));
+app.use('/api', require('./routes/appointments')(router));
 
 
-//require('./text/pet_crud_test.js');// añadir nueva mascota
+//require('./text/crud_test.js');//introducir datos para pruebas
 
 
 

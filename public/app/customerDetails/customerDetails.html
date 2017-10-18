@@ -35,7 +35,7 @@ Note:<input type="text" ng-model="customer.note" placeholder="" /><br>
 			<td>{{pet.description}}</td>
 		</tr>
 	</table>
-<a href="/customers/:customerId/pets/add">Añadir Mascota</a>
+<a href="/customers/{{customer._id}}/pets/add">Añadir Mascota</a>
 <br>
 <input type="button" ng-show="isNew()" ng-click="submit()" value="guardar">
 <input type="button" ng-show="!isNew()" ng-click="update()" value="modificar">

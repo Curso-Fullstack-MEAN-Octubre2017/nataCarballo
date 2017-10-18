@@ -17,16 +17,20 @@ angular.module('petStore')
             .when("/customers/:id",{
             	template: "<customer-details-module></customer-details-module>"
             })
-            /*.when("/pets/",{
-                template: "<pets-list-module></pets-list-module>" 
-            })*/
+            
+           
             .when("/pets/:id",{
                 template: "<pet-details-module></pet-details-module>" 
             })
             .when("/customers/:customerId/pets/add",{
                 template: "<pet-details-module></pet-details-module>" 
             })
-            
+            .when("/customers/:customerId/pets/:Id",{
+                template: "<pet-details-module></pet-details-module>" 
+            })
+            .when("/appointments/",{
+            	template:"<appointment-list-module></appointment-list-module>"
+            })
             .otherwise({
                   template: "Other"
             });

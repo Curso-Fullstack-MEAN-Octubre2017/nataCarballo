@@ -1,0 +1,23 @@
+<div ng-controller="AppointmentListController">
+<h3>Lista de citas</h3>
+<br><br><br><br>
+
+	<table>
+		<thead>
+		<th>    id      </th>
+			<th>     Fecha y hora de inicio      </th>
+			<th>      Fecha y hora de fin     </th>
+			<th>      id Mascota         </th>
+			<th>      id Veterinario         </th>
+			<th>      Estado cita       </th>
+		</thead>
+		<tr ng-repeat="appointment in appointmentList">
+		<td>{{appointment._id}}</td>
+			<td>{{appointment.dateStart}}</td>
+			<td>{{appointment.dateEnd}}</td>
+			<td>{{appointment.petId}}</td>
+			<td>{{appointment.vetId}}</td>
+			<td>{{appointment.status}}</td>
+		</tr>
+	</table>
+</div>

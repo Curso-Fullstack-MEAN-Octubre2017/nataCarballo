@@ -71,21 +71,7 @@ module.exports = (router) => {
 		});
 	});
 	
-	
-	
-	//////////////eliminar
 
-	/*router.delete('/customers/:id',(req, res)=> {
-		//console.log("/customers/" + req.params.id);
-		Customer.findByIdAndRemove({_id : req.params.id }, (err, customer)=> {
-			if (err) {
-				console.error(err);
-			} else {
-				res.sendStatus(200);
-				res.json({message: "El cliente con id  " + req.params.id + " ha sido borrado."});
-			}
-		});
-	});*/
 	
 	return router;
 }
