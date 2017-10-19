@@ -1,0 +1,22 @@
+
+
+<div ng-controller="AppointmentDetailsController">
+											
+
+Detalle cita número:  {{appointment._id}}<br><br><br><br><br>
+
+Fecha inicio:<input type="text" ng-model="appointment.dateStart" placeholder="" /><br>
+Fecha final:<input type="text" ng-model="appointment.dateEnd" placeholder="" /><br>
+Id mascota:<input type="text" ng-model="appointment.petId" placeholder="" /><br>
+Id veterinario:<input type="text" ng-model="appointment.vetId" placeholder="" /><br>
+Estado de la cita:<input type="text" ng-model="appointment.status" placeholder="" /><br>
+
+<br><br><br><br><br>
+
+
+
+<br>
+<input type="button" ng-show="isNew()" ng-click="submit()" value="añadir">
+<input type="button" ng-show="!isNew()" ng-click="update()" value="modificar">
+
+</div>

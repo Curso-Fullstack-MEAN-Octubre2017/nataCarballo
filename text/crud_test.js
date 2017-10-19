@@ -1,14 +1,15 @@
 const Pet = require('../models/pets');
 const Customer = require('../models/customer');
 const Appointment = require('../models/appointment');
+var moment = require('moment');
 
 var  tresAppointment={
 		
-		"dateStart":"19/10/2017 10:00",
-		"dateEnd":"19/10/2017 10:30",
+		"dateStart":moment("2017-10-21","YYYY-MM-DD"),
+		"dateEnd":moment("2017-10-21","YYYY-MM-DD"),
 		"petId":"59e5f275e810211f68f8a6fa", 
-		"vetId":"tggg otra tres",
-		"status":[-1]
+		"vetId":"prueba tres",
+		"status":[0]
 };
 
 

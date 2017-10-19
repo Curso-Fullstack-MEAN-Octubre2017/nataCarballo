@@ -7,6 +7,7 @@ angular.module('petStore', [
     'customerDetailsModule',
     'petListModule',
     'petDetailsModule',
-    'appointmentListModule'
+    'appointmentListModule',
+    'appointmentDetailsModule'
 ]);
 

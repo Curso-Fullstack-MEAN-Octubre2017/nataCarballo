@@ -18,8 +18,8 @@ module.exports = (router) => {
 	//buscar por id
 	
 	router.get('/customers/:id',(req, res)=> {
-		Customer.findById({_id:req.params.id}, (err, Customer)=> {
-			res.json(Customer);
+		Customer.findById({_id:req.params.id}, (err, customer)=> {
+			res.json(customer);
 		});
 	});
 

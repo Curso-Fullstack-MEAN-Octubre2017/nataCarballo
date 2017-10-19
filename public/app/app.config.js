@@ -25,12 +25,16 @@ angular.module('petStore')
             .when("/customers/:customerId/pets/add",{
                 template: "<pet-details-module></pet-details-module>" 
             })
-            .when("/customers/:customerId/pets/:Id",{
+            .when("/customers/:customerId/pets/:id",{
                 template: "<pet-details-module></pet-details-module>" 
             })
             .when("/appointments/",{
             	template:"<appointment-list-module></appointment-list-module>"
             })
+            .when("/appointments/:id",{
+            	template:"<appointment-details-module></appointment-details-module>"
+            })
+            
             .otherwise({
                   template: "Other"
             });
