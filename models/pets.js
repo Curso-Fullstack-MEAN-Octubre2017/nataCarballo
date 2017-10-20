@@ -5,7 +5,7 @@ const Customer= mongoose.model('Customer');
 
 const petSchema = new Schema({
 	    name: {type: String, required: true},
-	    birthdate: {type: String, required: true},
+	    birthdate: {type: String, required: true},//{type:Date, require:true}
 	    chipNumber: {type: String, required: true},
 	    specie: {type: String, required: true},
 	    race: {type: String, required: true},

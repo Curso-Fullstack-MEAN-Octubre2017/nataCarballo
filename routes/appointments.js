@@ -31,8 +31,19 @@ module.exports = (router) => {
 		Appointment.find({dateStart : {"$gte": from, "$lt": to}},(err, appointments)=>{
 			if (err) console.error(err);
 			else{
-				var total= appointments.reduce(()=>);
+				var total={};
+				for(var i= 0; i<appointments.length ;i++){
+					
+					var item=appointments[i];
+					var date = moment(item.dateStart).format('YYYY-MM-DD');
+	             	var time = moment(item.dateStart).format('HH:mm');
+
+	                if (total[date] == null) total[date] = {};
+	                if (total[date][time] == null) total[date][time] = item;
+	                
+				}
 				res.send(total);
+				return total;
 			}	
 			
 		}).populate({path: 'pet',populate: {path: 'customer'}}).sort({'dateTime': 1})
@@ -40,21 +51,21 @@ module.exports = (router) => {
 	
 	
 	router.put('/appointments/:id', (req, res, next) => {
-		Appointment.findByIdAndUpdate({_id : req.params.id },req.body, (err, appointment)=> {
+		Appointment.findByIdAndUpdate({_id : req.params.id },req.body, (err, appointments)=> {
 			if (err) return res.send(err);
 		
 
 			for(prop in req.body){
-				appointment[prop] = req.body[prop];
+				appointments[prop] = req.body[prop];
 			}
 			
-			console.log("Actualizando cita", appointment);
+			console.log("Actualizando cita", appointments);
 
 			appointment.save((err)=> {
 				if (err) {
 					console.error(err);
 				} else {
-					res.json(appointment);
+					res.json(appointments);
 				}
 			});
 		});
@@ -77,85 +88,110 @@ module.exports = (router) => {
 
 	return router;
 }
+
 /*
- 	router.put('/appointments/:id', (req, res, next) => {
-		Appointment.findByIdAndUpdate({_id : req.params.id },req.body, (err, appointment)=> {
-			if (err) return res.send(err);
-		
-
-			for(prop in req.body){
-				appointment[prop] = req.body[prop];
-			}
-			
-			console.log("Actualizando cita", appointment);
-
-			appointment.save((err)=> {
-				if (err) {
-					console.error(err);
-				} else {
-					res.json(appointment);
-				}
-			});
-		});
-	});
-	
-	router.post('/appointments', (req, res) => {
-		   var appointment = new Appointment(req.body);
-
-		   appointment.save((err) => {
-				if (err) {
-					console.error(err);
-					res.status(500).send(err);//KO
-				} else {
-					res.json(appointment);
-				}
-			}) ;   
-	});
-	
-router.put('/appointments/:id', (req, res, next) => {
-		Appointment.findByIdAndUpdate({_id : req.params.id },req.body, (err, appointment)=> {
-			if (err) return res.send(err);
-		
-
-			for(prop in req.body){
-				appointment[prop] = req.body[prop];
-			}
-			
-			console.log("Actualizando cita", appointment);
-
-			appointment.save((err)=> {
-				if (err) {
-					console.error(err);
-				} else {
-					res.json(appointment);
-				}
-			});
-		});
-	});
-	
-	router.post('/appointments', (req, res) => {
-		   var appointment = new Appointment(req.body);
-
-		   appointment.save((err) => {
-				if (err) {
-					console.error(err);
-					res.status(500).send(err);//KO
-				} else {
-					res.json(appointment);
-				}
-			}) ;   
-	});
-	
-
- 	
- 	
- 	(obj, item) {
-
-                var date = moment(item.dateTimeStart).format('YYYY-MM-DD');
-                var starthour = moment(item.dateTimeStart).utc().format('HH:mm');
-
-                if (obj[date] == null) obj[date] = {};
-                if (obj[date][starthour] == null) obj[date][starthour] = item;
-                return obj;
-            }, {});*/
+ 
+ 
   
+  
+  
+  	router.get('/appointments/:fromdate/:todate',(req, res,next)=>{
+		
+		var from = moment(req.params.fromdate,'YYYYMM');
+		var to = moment(req.params.todate,'YYYYMM');
+		
+		console.log("buscando appointments por fechas", from, to);
+		
+		Appointment.find({dateStart : {"$gte": from, "$lt": to}},(err, appointments)=>{
+			if (err) console.error(err);
+			else{
+				var total={};
+				for(var i= 0; i<appointments.length ;i++){
+					
+					var item=appointments[i];
+					var date = moment(item.dateStart).format('YYYY-MM-DD');
+	             	var time = moment(item.dateStart).format('HH:mm');
+
+	                if (total[date] == null) total[date] = {};
+	                if (total[date][time] == null) total[date][time] = item;
+	                
+				}
+				res.send(total);
+				return total;
+			}	
+			
+		}).populate({path: 'pet',populate: {path: 'customer'}}).sort({'dateTime': 1})
+	});
+	
+	
+	router.put('/appointments/:id', (req, res, next) => {
+		Appointment.findByIdAndUpdate({_id : req.params.id },req.body, (err, appointments)=> {
+			if (err) return res.send(err);
+		
+
+			for(prop in req.body){
+				appointments[prop] = req.body[prop];
+			}
+			
+			console.log("Actualizando cita", appointments);
+
+			appointment.save((err)=> {
+				if (err) {
+					console.error(err);
+				} else {
+					res.json(appointments);
+				}
+			});
+		});
+	});
+	
+	router.post('/appointments', (req, res) => {
+		   var appointment = new Appointment(req.body);
+
+		   appointment.save((err) => {
+				if (err) {
+					console.error(err);
+					res.status(500).send(err);//KO
+				} else {
+					res.json(appointment);
+				}
+			}) ;   
+	});
+	
+
+
+	return router;
+}
+ * 
+ * 
+ *
+if($routeParams.month) {
+Month = moment($routeParams.month, "YYYYMM"); 
+}
+$scope.Month = Month.toDate();
+$scope.prevMonth = moment(Month).add(-1,'M').toDate();
+$scope.nextMonth = moment(Month).add(1,'M').toDate();
+
+$scope.cells = []
+
+var firstWeekDay = Month.weekday();
+for(var i = 0; i < firstWeekDay; i++) {
+$scope.cells.push({date: "---"});
+}
+
+
+$http.get("/api/appointmentsByDate/20171001/20171101").then((response)=>{
+$scope.appointmentsByDate = response.data;
+for (var m = moment(Month); m.isBefore($scope.nextMonth); m.add(1, 'days')) {
+	var Date = m.format('YYYY-MM-DD');
+	$scope.cells.push({
+		date: Date, 
+		appointments: $scope.appointmentsByDate[currentDate],
+		appointmentsCount: $scope.appointmentsByDate[Date] ? Object.keys($scope.appointmentsByDate[Date]).length : 0,
+	});
+}
+});
+
+
+}
+});*/
