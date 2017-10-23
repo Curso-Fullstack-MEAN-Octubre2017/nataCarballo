@@ -46,10 +46,43 @@ module.exports = (router) => {
 				return total;
 			}	
 			
-		}).populate({path: 'pet',populate: {path: 'customer'}}).sort({'dateTime': 1})
+		}).populate({path: 'Pet',populate: {path: 'Customer'}}).sort({'dateTime': 1})
 	});
 	
+	router.get('/appointmentsByDate/:from/:to',(req, res, next)=>{
+		var from = moment(req.params.from,'YYYYMM');
+		var to = moment(req.params.to,'YYYYMM');
+		
+		var searchParams = {};
+	    searchParams['dateStart'] = {$gte: from, $lt: to};
+	    searchParams['status'] = {$gte: 0}
+	    
+	    Appointment.find(searchParams, (err, appointments) => {
+			if (err) {
+				console.error(err);
+			}
+			
+	        var appointmentsByDate = appointments.reduce((appointmentsByDate, item)=>{
+	            var date = moment(item.dateStart).format('YYYYMMDD');
+	            var time = moment(item.dateStart).format('hh:mm');
+	            if(appointmentsByDate[date] == undefined) {
+	            	appointmentsByDate[date] = {};
+	            }
+	            if(appointmentsByDate[date][time] == undefined) {
+	            	appointmentsByDate[date][time] = item;
+	            }
+	            
+	            return appointmentsByDate;
+	        }, {});
+			
+			
+	        res.send(appointmentsByDate);
+	    
+	}).populate({path: 'Pet',populate: {path: 'Customer'}}).sort({'dateTime': 1})
+		
+});
 	
+
 	router.put('/appointments/:id', (req, res, next) => {
 		Appointment.findByIdAndUpdate({_id : req.params.id },req.body, (err, appointments)=> {
 			if (err) return res.send(err);

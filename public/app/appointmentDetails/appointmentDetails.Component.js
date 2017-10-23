@@ -17,15 +17,35 @@ angular.module('appointmentDetailsModule', []);
  	    		$scope.appointment = response.data;
  	    	});
 	    	
-     	} else $scope.appointment = {};
-     	
+     	} else{
+     		console.log("nueva cita: ", $routeParams.datetime);
+     		
+     		$scope.appointment.dateStart = moment($routeParams.datetime, 'YYYYMMDD-hh:mm').toDate();
+    		$scope.appointment.dateEnd = moment($scope.appointment.dateStart).add(30,'m').toDate();
+     		
+     		$scope.appointment = 0;
+     	}
+ 
  
      	$scope.submit =()=> {
      		console.log("añadir cita:", $scope.appointment);
      		$http.post("/api/appointments", $scope.appointment).then((response)=>{
-     			$scope.appointment = response.data;
+     			$scope.appointment = response;
+     			var date = moment($scope.appointment.dateStart).format("YYYYMMDD")
+     			$location.path("/appointments-day-list/" + date);
      		});
      	}
+   
+     	$scope.remove = ()=> {
+    		if(confirm("¿seguro?")) {
+    			var date = moment($scope.appointment.dateStart).format("YYYYMMDD");
+    			$http.delete("/api/appointments",$scope.appointment).then(()=> {
+						$location.path("/appointments-day-list/" + date);
+					}, ()=> {
+						alert("no se ha borradof!!");
+					});
+				}
+    	};
  
      	$scope.update = ()=> {
      		console.log("Modificar cita:", $scope.appointment);
@@ -36,8 +56,8 @@ angular.module('appointmentDetailsModule', []);
      		});
      	}
      	
-     	
-     	$scope.isNew = ()=> {
-     		return $scope.appointment === undefined || $scope.appointment._id === undefined;
-     	}
+     	$scope.cancel = ()=> {
+    		history.back();
+    	};
+
      });

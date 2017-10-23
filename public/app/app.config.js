@@ -20,12 +20,17 @@ angular.module('petStore')
   
             .when("/pets/:id",{template: "<pet-details-module></pet-details-module>" })
             
-            .when("/appointments/",{template:"<appointment-list-module></appointment-list-module>"})
+           // .when("/appointments/",{template:"<appointment-list-module></appointment-list-module>"})
             
             .when("/appointments/:id",{template:"<appointment-details-module></appointment-details-module>"})
             
-            .when("/calendar/",{template:"<appointment-calendar-module></appointment-calendar-module>"})
+            .when("/appointments-day-list/:date",{ template: "<appointment-day-list-module></appointment-day-list-module>" })
             
+             .when("/appointmentsCalendar/",{template:"<appointments-calendar-module></appointments-calendar-module>"})
+            
+            .when("/appointmentsCalendar/:month",{template:"<appointments-calendar-module></appointments-calendar-module>"})
+           
+           
             .otherwise({
                   template: "Other"
             });

@@ -3,7 +3,7 @@
 <div ng-controller="AppointmentDetailsController">
 											
 
-Detalle cita número:  {{appointment._id}}<br><br><br><br><br>
+Detalle cita nÃºmero:  {{appointment._id}}<br><br><br><br><br>
 
 Fecha inicio:<input type="text" ng-model="appointment.dateStart" placeholder="" /><br>
 Fecha final:<input type="text" ng-model="appointment.dateEnd" placeholder="" /><br>
@@ -16,7 +16,8 @@ Estado de la cita:<input type="text" ng-model="appointment.status" placeholder="
 
 
 <br>
-<input type="button" ng-show="isNew()" ng-click="submit()" value="añadir">
-<input type="button" ng-show="!isNew()" ng-click="update()" value="modificar">
+<input type="button" ng-click="submit()" value="aÃ±adir">
+<input type="button" ng-click="cancel()" value="Cancelar">
+<input type="button" ng-click="remove()" value="Delete">
 
 </div>
