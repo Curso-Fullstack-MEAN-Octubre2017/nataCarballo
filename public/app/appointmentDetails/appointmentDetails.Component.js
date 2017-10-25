@@ -10,7 +10,7 @@ angular.module('appointmentDetailsModule', []);
      .controller('AppointmentDetailsController', ($http, $scope, $routeParams)=> {
      	console.log("inicializando el AppointmentDetailsController...");
      	
-     	if(isNaN(+$routeParams.id)) {
+     	if($routeParams.id) {
      		
 	    	$http.get("/api/appointments/" + $routeParams.id).then((response)=> {
  	    		console.log("Response /api/appointments/" + $routeParams.id, response);
@@ -18,12 +18,15 @@ angular.module('appointmentDetailsModule', []);
  	    	});
 	    	
      	} else{
-     		console.log("nueva cita: ", $routeParams.datetime);
      		
-     		$scope.appointment.dateStart = moment($routeParams.datetime, 'YYYYMMDD-hh:mm').toDate();
-    		$scope.appointment.dateEnd = moment($scope.appointment.dateStart).add(30,'m').toDate();
+     		//$scope.appointment = {};
      		
-     		$scope.appointment = 0;
+     		$scope.appointment.dateStart= {};
+     		$scope.appointment.dateEnd= {};
+     		$scope.appointment.petId= {};
+     		$scope.appointment.status= {};
+     	
+
      	}
  
  

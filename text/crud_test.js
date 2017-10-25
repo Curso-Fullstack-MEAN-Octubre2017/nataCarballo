@@ -5,8 +5,8 @@ var moment = require('moment');
 
 var  tresAppointment={
 		
-		"dateStart":moment("2017-10-21","YYYY-MM-DD"),
-		"dateEnd":moment("2017-10-21","YYYY-MM-DD"),
+		"dateStart":moment("2017-10-10 11:00:04" ,"YYYY-MM-DD h:mm:ss a"),
+		"dateEnd":moment("2017-10-10 11:30:04","YYYY-MM-DD h:mm:ss a"),
 		"petId":"59e5f275e810211f68f8a6fa", 
 		"vetId":"prueba tres",
 		"status":[0]

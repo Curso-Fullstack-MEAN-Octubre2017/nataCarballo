@@ -10,15 +10,18 @@ angular.module('appointmentsCalendarModule')
         console.log("inicializando controlador calendario...");
     }
 })
-.controller('appointmentCalendarController', ($http, $scope, $routeParams, appointmentServicie)=> {
+.controller('appointmentCalendarController', ($http, $scope, $routeParams,$location, appointmentServicie)=> {
 	
 	console.log("inicializando controlador calendario...");
 	moment.locale("es");
-	
+
 	 var currentMonth = moment().startOf('month'); //mes actual
+	 
 	 if($routeParams.month) {   					//si hay datos
-     	currentMonth = moment($routeParams.month, "YYYYMM"); 
+     	currentMonth = moment($routeParams.month, "YYYYMMDD"); 
      }
+	 
+	
 
      $scope.currentMonth = currentMonth.toDate();	
      $scope.prevMonth = moment(currentMonth).add(-1,'M').toDate();	//al mes actual le resta uno
@@ -31,19 +34,11 @@ angular.module('appointmentsCalendarModule')
      	$scope.cells.push({date: "---"});
      }
      
-     var formatCurrentMonth = moment($scope.currentMonth).format("YYYYMMDD"); //mes en curso
-     var formatNextMonth = moment($scope.nextMonth).format("YYYYMMDD");	//mes siguiente
-   
-     
-     
-     
-     //$http.get("/api/appointmentsByDate/"+formatCurrentMonth+"/"+formatNextMonth).then((response)=>{
-     
      appointmentServicie.getMonthAppointmentsByDate(currentMonth).then((response)=>{
      
-     	$scope.appointmentsByDate = response.data;
+     	$scope.appointmentsByDate = response;
          for (var m = moment(currentMonth); m.isBefore($scope.nextMonth); m.add(1, 'days')) {  // Pintamos las celdas que corresponden al mes y añadimos los datos a cada celda.
-         	var currentDate = m.format('YYYY-MM-DD');
+         	var currentDate = m.format('YYYYMMDD');
          	$scope.cells.push({
          		date: m.toDate(), 
          		appointments: $scope.appointmentsByDate[currentDate],
@@ -51,13 +46,9 @@ angular.module('appointmentsCalendarModule')
          	});
      	}
      });
-     
-    /* $scope.openDayAppointments = (date) => {
+     $scope.openDayAppointments = (date) => {
          $location.path("/appointments-day-list/" + moment(date).format('YYYYMMDD'))
-     };*/
+     };
 });
 	
 
-
-/* moment().month-> meses desde cero, donde cero es enero.
-moment().startOf('month'); -> Establece el mes actual del sistema.*/

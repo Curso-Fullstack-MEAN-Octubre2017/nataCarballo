@@ -23,8 +23,8 @@ module.exports = (router) => {
 	
 	router.get('/appointments/:fromdate/:todate',(req, res,next)=>{
 		
-		var from = moment(req.params.fromdate,'YYYYMM');
-		var to = moment(req.params.todate,'YYYYMM');
+		var from = moment(req.params.fromdate,'YYYYMMDD');
+		var to = moment(req.params.todate,'YYYYMMDD');
 		
 		console.log("buscando appointments por fechas", from, to);
 		
@@ -35,7 +35,7 @@ module.exports = (router) => {
 				for(var i= 0; i<appointments.length ;i++){
 					
 					var item=appointments[i];
-					var date = moment(item.dateStart).format('YYYY-MM-DD');
+					var date = moment(item.dateStart).format('YYYYMMDD');
 	             	var time = moment(item.dateStart).format('HH:mm');
 
 	                if (total[date] == null) total[date] = {};
@@ -50,8 +50,8 @@ module.exports = (router) => {
 	});
 	
 	router.get('/appointmentsByDate/:from/:to',(req, res, next)=>{
-		var from = moment(req.params.from,'YYYYMM');
-		var to = moment(req.params.to,'YYYYMM');
+		var from = moment(req.params.from,'YYYYMMDD');
+		var to = moment(req.params.to,'YYYYMMDD');
 		
 		var searchParams = {};
 	    searchParams['dateStart'] = {$gte: from, $lt: to};

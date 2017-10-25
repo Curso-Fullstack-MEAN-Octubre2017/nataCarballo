@@ -3,12 +3,14 @@
 angular.module('petStore', [
     'ngResource',
     'ngRoute',
+    'appointmentServicie',
     'customerListModule',
     'customerDetailsModule',
     'petListModule',
     'petDetailsModule',
-   // 'appointmentListModule',
+    'appointmentListModule',
     'appointmentDetailsModule',
-    'appointmentsCalendarModule'
+    'appointmentsCalendarModule',
+    'appointmentsDayListModule',
 ]);
 

@@ -32,7 +32,7 @@ app.use('/api', require('./routes/pets')(router));
 app.use('/api', require('./routes/appointments')(router));
 
 
-//require('./text/crud_test.js');//introducir datos para pruebas
+require('./text/crud_test.js');//introducir datos para pruebas
 
 
 
