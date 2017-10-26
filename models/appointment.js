@@ -7,7 +7,7 @@ const AppointmentSchema = new Schema({
 	dateEnd:{type:Date, require:true},
 	petId:{type: Schema.ObjectId, ref:'Pet',required:true},
 	vetId:String,
-	status:String//{type: Number, enum [-1,0,1,2]}
+	status:String
 		
 		
 });

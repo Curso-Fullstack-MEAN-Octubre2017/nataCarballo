@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Customer= mongoose.model('Customer');
-//const Customer= require('../models/customer');
+
 
 const petSchema = new Schema({
 	    name: {type: String, required: true},

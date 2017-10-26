@@ -32,7 +32,7 @@ app.use('/api', require('./routes/pets')(router));
 app.use('/api', require('./routes/appointments')(router));
 
 
-require('./text/crud_test.js');//introducir datos para pruebas
+//require('./text/crud_test.js');//introducir datos para pruebas
 
 
 
@@ -54,9 +54,8 @@ app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+ console.error(err)
+  res.sendStatus(err.status || 500);
 });
 
 module.exports = app;

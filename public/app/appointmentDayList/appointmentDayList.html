@@ -4,28 +4,24 @@
 <table>
 		<tr>
 			<th>Hora</th>
-			<th>Cita</th>
+			<th>Mascota</th>
 			<th>Estado de la cita</th>
-			<td><i class="material-icons">nueva</i></th>
+			<th><i class="material-icons">add</i></th>
 		</tr>
-		<tr data-ng-repeat="x in timetable">
+		
+		
+		
+		<tr ng-repeat="x in timetable">
 			<td>{{x.hour}}</td> 
+				<td><span ng-show="x.appointment">{{x.appointment.petId.name}}<span></td>
+				<td><span ng-show="x.appointment">{{x.appointment.status}}<span></td>
 			<td>
-				<span data-ng-show="x.appointment">Mascota: {{x.appointment.petId.name}}</span>
-			</td>
-			<td>
-				<span data-ng-show="x.appointment"> Estado de la cita: {{x.appointment.status}}</span>
-			</td>
-			<td>
-				<a data-ng-show="x.appointment" href="/appointments/{{x.appointment._id}}">
-					<i class="material-icons">Modificar</i>
-				</a>
-
-				<a data-ng-show="!x.appointment" href="/appointments/add/ {{day + '-' + x.hour}}">
-					<i class="material-icons">{{day + '-' + x.hour}}</i>
-				</a>
+				<a ng-show="x.appointment" href="/appointments/{{x.appointment._id}}"><i class="material-icons">Modificar</i></a>
+				<a ng-show="!x.appointment" href="/appointments/add/{{day + '-' + x.hour}}"><i class="material-icons">{{day + '-' + x.hour}}</i></a>
 			</td>
 		</tr>
+
 </table>
+
 
 			

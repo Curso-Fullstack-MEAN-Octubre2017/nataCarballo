@@ -7,7 +7,7 @@ angular.module('appointmentDetailsModule', []);
              console.log("Incializando detalles cita...");
          }
      })
-     .controller('AppointmentDetailsController', ($http, $scope, $routeParams)=> {
+     .controller('AppointmentDetailsController', ($http, $scope, $routeParams, $location)=> {
      	console.log("inicializando el AppointmentDetailsController...");
      	
      	if($routeParams.id) {
@@ -19,21 +19,22 @@ angular.module('appointmentDetailsModule', []);
 	    	
      	} else{
      		
-     		//$scope.appointment = {};
+     		$scope.appointment = {};
+     	//	var principio=moment($routeParams.datetime, 'YYYYMMDDhh:mm').toDate();
+     	//	var fin= moment($routeParams.datetime,'YYYYMMDDhh:mm' ).add(30,'m').toDate();
+     	//	var principioCita= moment(principio).format('YYYYMMDDhh:mm');
+     	//	var finalCita= moment(fin).format('YYYYMMDDhh:mm');
      		
-     		$scope.appointment.dateStart= {};
-     		$scope.appointment.dateEnd= {};
-     		$scope.appointment.petId= {};
-     		$scope.appointment.status= {};
-     	
+     		$scope.appointment.dateStart= moment($routeParams.datetime, 'YYYYMMDDhh:mm').toDate();
+     		$scope.appointment.dateEnd= moment($routeParams.datetime,'YYYYMMDDhh:mm' ).add(30,'m').toDate();
 
      	}
- 
- 
+
      	$scope.submit =()=> {
      		console.log("añadir cita:", $scope.appointment);
      		$http.post("/api/appointments", $scope.appointment).then((response)=>{
-     			$scope.appointment = response;
+     			$scope.appointment = response.data;
+     			console.log("cita guardada");
      			var date = moment($scope.appointment.dateStart).format("YYYYMMDD")
      			$location.path("/appointments-day-list/" + date);
      		});
@@ -53,7 +54,7 @@ angular.module('appointmentDetailsModule', []);
      	$scope.update = ()=> {
      		console.log("Modificar cita:", $scope.appointment);
      		$http.put("/api/appointments/" + $scope.appointment._id, $scope.appointment).then((response)=>{
-     			$scope.appointment = response.data;
+     			$scope.appointment = response;
      			console.log("cambios guardados");
      			history.back();//volver atras en el historial
      		});
