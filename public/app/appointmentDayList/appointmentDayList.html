@@ -3,21 +3,21 @@
 
 <table>
 		<tr>
-			<th>Hora</th>
-			<th>Mascota</th>
-			<th>Estado de la cita</th>
-			<th><i class="material-icons">add</i></th>
+			<th class="deep-purple-text subrayado" >Hora</th>
+			<th class="deep-purple-text subrayado">Mascota</th>
+			<th class="deep-purple-text subrayado">Estado de la cita</th>
+			<th class="deep-purple-text"><i class="material-icons">add</i></th>
 		</tr>
 		
 		
 		
 		<tr ng-repeat="x in timetable">
-			<td>{{x.hour}}</td> 
+			<td class="deep-purple-text">{{x.hour}}</td> 
 				<td><span ng-show="x.appointment">{{x.appointment.petId.name}}<span></td>
 				<td><span ng-show="x.appointment">{{x.appointment.status}}<span></td>
 			<td>
-				<a ng-show="x.appointment" href="/appointments/{{x.appointment._id}}"><i class="material-icons">Modificar</i></a>
-				<a ng-show="!x.appointment" href="/appointments/add/{{day + '-' + x.hour}}"><i class="material-icons">{{day + '-' + x.hour}}</i></a>
+				<a  ng-show="x.appointment" href="/appointments/{{x.appointment._id}}"><i class="material-icons deep-purple-text">create</i></a>
+				<a  ng-show="!x.appointment" href="/appointments/add/{{day + '-' + x.hour}}"><i class="material-icons deep-purple-text">add_box</i></a>
 			</td>
 		</tr>
 

@@ -7,7 +7,9 @@
 	<link rel="stylesheet" href="/stylesheets/style.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	
+	<script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.12.0/validate.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script> 
@@ -30,7 +32,7 @@
 	<script src="/app/servicie/appointmentService.js"></script>
 	<script src="/app/customerList/customerList.Component.js"></script>
 	<script src="/app/customerDetails/customerDetails.Component.js"></script>
-	<script src="/app/petList/petList.Component.js"></script>
+	
 	<script src="/app/petDetails/petDetails.Component.js"></script>
 	<script src="/app/appointmentList/appointmentList.Component.js"></script>
 	<script src="/app/appointmentsCalendar/appointmentsCalendar.Component.js"></script>
@@ -42,15 +44,31 @@
 	</head>
 <body>
 	
-	<a href="/">Lista de Clientes</a>
-	<a href="/customers/">Añadir Cliente</a>
+<!-- 	<a href="/">Lista de Clientes</a> -->
+<!-- 	<a href="/customers/">Añadir Cliente</a> -->
+<!-- 	<a href="/appointments-calendar/">Calendario</a> -->
 	
-<!-- 	<a href="/appointments/">Citas</a> -->
-	<a href="/appointments-calendar/">Calendario</a>
+<!-- 	<ul class="collection with-header"> -->
+<!--         <li class="collection-header"><h4>Clínica Pulgas</h4></li> -->
+<!--         <li class="collection-item"><div>Clientes<a href="/" class="secondary-content"><i class="small material-icons">account_box</i></a></div></li> -->
+<!--         <li class="collection-item"><div>Calendario<a href="/appointments-calendar/" class="secondary-content"><i class="small material-icons">date_range</i></a></div></li> -->
+<!--         <li class="collection-item"><div>Nuevo Cliente<a href="/customers/" class="secondary-content"><i class="small material-icons">create</i></a></div></li> -->
+<!--     </ul> -->
 	
+	  <nav>
+    <div class="nav-wrapper deep-purple">
+      <a href="#" class="brand-logo">Clínica Pupas</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/">Clientes</a></li>
+        <li><a href="/appointments-calendar/">Calendario</a></li>
+        <li><a href="/customers/">Nuevo Cliente</a></li>
+      </ul>
+    </div>
+  </nav>
 	
+		
 	
-	<div id="" class="ventana">
+	<div id="" class="ventana container">
 		<div ng-view></div>
 	</div>
 

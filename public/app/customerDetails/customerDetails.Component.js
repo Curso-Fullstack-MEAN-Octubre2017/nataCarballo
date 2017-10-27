@@ -27,6 +27,12 @@
      	}
  
      	$scope.submit =()=> {
+     		
+//     		const validationErrors = Validators.validateCustomer($scope.customer);
+//    		if(validationErrors) {
+//    			return alert(JSON.stringify(validationErrors));
+//    		} 
+//    		
      		console.log("añadir customer:", $scope.customer);
      		$http.post("/api/customers", $scope.customer).then((response)=>{
      			$scope.customer = response.data;

@@ -34,9 +34,19 @@ module.exports = (router) => {
 	});
 	//nuevo cliente
 	
-	router.post('/customers', (req, res) => {
+	
+	
+	router.post('/customers', (req, res,next) => {
+		console.log("añadiendo nuevo cliente.");
+		
 		   var customer = new Customer(req.body);
-
+		   
+//		   const validationErrors = Validators.validateCustomer(customer);
+//		   
+//		   if(validationErrors) {
+//				return res.status(400).send(validationErrors);
+//			}
+//		   
 		   customer.save((err) => {
 				if (err) {
 					console.error(err);

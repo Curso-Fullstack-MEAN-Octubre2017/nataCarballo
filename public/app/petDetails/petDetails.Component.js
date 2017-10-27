@@ -33,10 +33,12 @@
     		});
     	}
 
-    	$scope.uptade = ()=>{
+    	$scope.update = ()=>{
     		console.log("modificar mascota:", $scope.pet);
     		$http.put("/api/pets/" + $scope.pet._id, $scope.pet).then((response)=>{
     			$scope.pet = response.data;
+    			console.log("mascota modificada");
+    			history.back();
     		});
     	}
     
@@ -45,6 +47,7 @@
      		console.log("Borrar mascota:", $scope.pet);
      		$http.delete("/api/pets/" + $scope.pet._id,$scope.pet).then((response)=>{
      			$scope.pet=response.data;
+     			console.log("mascota eliminada");
      			history.back();
      		});
     	}
