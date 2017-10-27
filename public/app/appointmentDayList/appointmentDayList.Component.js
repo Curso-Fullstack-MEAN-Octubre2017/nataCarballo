@@ -7,7 +7,7 @@ angular.module('appointmentsDayListModule', []);
 angular.module('appointmentsDayListModule')
     .component('appointmentsDayListModule', {
         templateUrl:'app/appointmentDayList/appointmentDayList.html',
-        controller: function($scope, $http, $routeParams) {
+        controller: ($scope, $http, $routeParams)=> {
 
             moment.locale("es");
             

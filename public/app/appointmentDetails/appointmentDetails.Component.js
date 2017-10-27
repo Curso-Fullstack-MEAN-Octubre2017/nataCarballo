@@ -20,15 +20,15 @@ angular.module('appointmentDetailsModule', []);
      	} else{
      		
      		$scope.appointment = {};
-     	//	var principio=moment($routeParams.datetime, 'YYYYMMDDhh:mm').toDate();
-     	//	var fin= moment($routeParams.datetime,'YYYYMMDDhh:mm' ).add(30,'m').toDate();
-     	//	var principioCita= moment(principio).format('YYYYMMDDhh:mm');
-     	//	var finalCita= moment(fin).format('YYYYMMDDhh:mm');
      		
      		$scope.appointment.dateStart= moment($routeParams.datetime, 'YYYYMMDDhh:mm').toDate();
      		$scope.appointment.dateEnd= moment($routeParams.datetime,'YYYYMMDDhh:mm' ).add(30,'m').toDate();
 
      	}
+     	
+     		$http.get("api/pets").then(function(response){
+     		   		  $scope.pets = response.data; 
+     		});     
 
      	$scope.submit =()=> {
      		console.log("añadir cita:", $scope.appointment);
@@ -59,6 +59,9 @@ angular.module('appointmentDetailsModule', []);
      			history.back();//volver atras en el historial
      		});
      	}
+     	$scope.isNew = ()=> {
+     				return $scope.appointment === undefined || $scope.appointment._id === undefined;
+     		        }
      	
      	$scope.cancel = ()=> {
     		history.back();

@@ -30,6 +30,8 @@
      		console.log("añadir customer:", $scope.customer);
      		$http.post("/api/customers", $scope.customer).then((response)=>{
      			$scope.customer = response.data;
+     			console.log("Nuevo cliente guardado");
+     			history.back();
      		});
      	}
  

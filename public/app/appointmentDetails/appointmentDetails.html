@@ -4,22 +4,32 @@
 	
 										
 
-Detalle cita número: {{appointment._id}}<br><br><br><br><br>
+<h5>Detalle cita: {{appointment.dateStart | date: 'HH:mm'}}h. del {{appointment.dateStart | date: 'dd/MM/y'}}</h5>
+<br><br><br>
+<br><br><br>
 
-Fecha inicio:<input type="text" ng-model="appointment.dateStart" placeholder="" /><br>
-Fecha final:<input type="text" ng-model="appointment.dateEnd" placeholder="" /><br>
-Id mascota:<input type="text" ng-model="appointment.petId" placeholder="" /><br>
-Id veterinario:<input type="text" ng-model="appointment.vetId" placeholder="" /><br>
-Estado de la cita:<input type="text" ng-model="appointment.status" placeholder="" /><br>
 
-<br><br><br><br><br>
+    Mascota:<select id="mi-select" class="browser-default" ng-model="appointment.petId._id" 
+			ng-options="pet._id as pet.name for pet in pets">
+	        <option value="" disabled selected>Selecciona una mascota</option>
+	    </select><br>
+
+    Estado de la cita:<select id="mi-select" class="browser-default" data-ng-model="appointment.status">
+	        		<option value="" disabled selected>Selecciona un estado</option>
+	        		<option value="-1">Cancelado</option>
+	       			<option value="0">Pendiente</option>
+	        		<option value="1">En Curso</option>
+	        		<option value="2">Completado</option>
+	    		 </select><br>
 
 
 
 <br>
-<input type="button" ng-click="update()" value="modificar">
-<input type="button" ng-click="submit()" value="añadir">
+<input type="button" data-ng-show="!isNew()" ng-click="update()" value="modificar">
+<input type="button" data-ng-show="isNew()" ng-click="submit()" value="añadir">
 <input type="button" ng-click="cancel()" value="Cancelar">
 <input type="button" ng-click="remove()" value="Delete">
 
 </div>
+
+

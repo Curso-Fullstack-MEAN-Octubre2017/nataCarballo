@@ -24,10 +24,12 @@
      		$scope.pet.customerId = $routeParams.customerId;
     	}
 
-    	$scope.insert = ()=> {
+    	$scope.submit = ()=> {
     		console.log("Añadir mascota:", $scope.pet);
     		$http.post("/api/pets", $scope.pet).then((response)=>{
     			$scope.pet = response.data;
+    			console.log("Nueva mascota guardada");
+    			history.back();
     		});
     	}
 
