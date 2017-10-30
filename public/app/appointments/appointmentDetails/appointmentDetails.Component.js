@@ -2,33 +2,37 @@ angular.module('appointmentDetailsModule', []);
  
  angular.module('appointmentDetailsModule')
      .component('appointmentDetailsModule', {
-         templateUrl:'app/appointmentDetails/appointmentDetails.html',
+         templateUrl:'app/appointments/appointmentDetails/appointmentDetails.html',
          controller: ($scope, $http)=> {
              console.log("Incializando detalles cita...");
          }
      })
-     .controller('AppointmentDetailsController', ($http, $scope, $routeParams, $location)=> {
+     .controller('AppointmentDetailsController', ($http, $scope)=> {
      	console.log("inicializando el AppointmentDetailsController...");
      	
-     	if($routeParams.id) {
+     	$scope.$on("appointments:modificarCita", (eventos, datos)=>{
+     	
+     	if(datos["id"]) {
      		
-	    	$http.get("/api/appointments/" + $routeParams.id).then((response)=> {
- 	    		console.log("Response /api/appointments/" + $routeParams.id, response);
+	    	$http.get("/api/appointments/" + datos["id"]).then((response)=> {
+ 	    		console.log("Response /api/appointments/" + datos["id"] , response);
  	    		$scope.appointment = response.data;
  	    	});
 	    	
-     	} else{
+     	} 
      		
      		$scope.appointment = {};
      		
-     		$scope.appointment.dateStart= moment($routeParams.datetime, 'YYYYMMDDhh:mm').toDate();
-     		$scope.appointment.dateEnd= moment($routeParams.datetime,'YYYYMMDDhh:mm' ).add(30,'m').toDate();
+     		$scope.appointment.dateStart= moment(datos["date"], 'YYYYMMDDhh:mm').toDate();
+     		$scope.appointment.dateEnd= moment(datos["date"],'YYYYMMDDhh:mm' ).add(30,'m').toDate();
 
-     	}
      	
-     		$http.get("api/pets").then(function(response){
+     	
+     	
+     		$http.get("api/pets").then((response)=>{
      		   		  $scope.pets = response.data; 
-     		});     
+     		}); 
+     	});
 
      	$scope.submit =()=> {
      		console.log("añadir cita:", $scope.appointment);
@@ -66,5 +70,6 @@ angular.module('appointmentDetailsModule', []);
      	$scope.cancel = ()=> {
     		history.back();
     	};
-
+     	
      });
+     

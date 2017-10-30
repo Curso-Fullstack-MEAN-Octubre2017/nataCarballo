@@ -5,8 +5,8 @@ angular.module('customerListModule', []);
 angular.module('customerListModule')
     .component('customerListModule', {
         templateUrl:'/app/customerList/customerList.html',
-        controller: ($scope, $http)=> {
-            console.log("Incializando lista clientes...")
+        controller: function($scope, $http) {
+            console.log("Incializando lista clientes...", this)
         }
     })
     .controller('CustomerListController', ($http, $scope)=> {

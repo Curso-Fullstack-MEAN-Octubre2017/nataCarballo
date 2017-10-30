@@ -2,14 +2,14 @@
 
 <div ng-controller="AppointmentDetailsController">
 	
-										
+<!-- 									{{appointment._id}}	 -->
 
 <h5>Detalle cita: {{appointment.dateStart | date: 'HH:mm'}}h. del {{appointment.dateStart | date: 'dd/MM/y'}}</h5>
 <br><br><br>
 <br><br><br>
 
 
-    Mascota:<select id="mi-select" class="browser-default" ng-model="appointment.petId._id" 
+    Mascota:<select id="mi-select" class="browser-default" data-ng-model="appointment.petId._id" 
 			ng-options="pet._id as pet.name for pet in pets">
 	        <option value="" disabled selected>Selecciona una mascota</option>
 	    </select><br>

@@ -101,7 +101,7 @@ module.exports = (router) => {
 			
 			console.log("Actualizando cita", appointments);
 
-			appointment.save((err)=> {
+			appointments.save((err)=> {
 				if (err) {
 					console.error(err);
 				} else {

@@ -16,8 +16,8 @@
 				<td><span ng-show="x.appointment">{{x.appointment.petId.name}}<span></td>
 				<td><span ng-show="x.appointment">{{x.appointment.status}}<span></td>
 			<td>
-				<a  ng-show="x.appointment" href="/appointments/{{x.appointment._id}}"><i class="material-icons deep-purple-text">create</i></a>
-				<a  ng-show="!x.appointment" href="/appointments/add/{{day + '-' + x.hour}}"><i class="material-icons deep-purple-text">add_box</i></a>
+				<a  ng-show="x.appointment" ng-click="modificarCita(x.appointment._id)"><i class="material-icons deep-purple-text">create</i></a>
+				<a  ng-show="!x.appointment" ng-click="crearCita()"><i class="material-icons deep-purple-text">add_box</i></a>
 			</td>
 		</tr>
 

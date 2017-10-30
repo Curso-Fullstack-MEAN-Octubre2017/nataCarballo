@@ -24,13 +24,15 @@ angular.module('petStore')
             
             .when("/appointments/:id",{template:"<appointment-details-module></appointment-details-module>"})
             
-            .when("/appointments-day-list/:date",{ template: "<appointments-day-list-module></appointments-day-list-module>" })
+           // .when("/appointments-day-list/:date",{ template: "<appointments-day-list-module></appointments-day-list-module>" })
             
              .when("/appointments-calendar/",{template:"<appointments-calendar-module></appointments-calendar-module>"})
             
             .when("/appointments-calendar/:month",{template:"<appointments-calendar-module></appointments-calendar-module>"})
            
             .when("/appointments/add/:datetime",{ template: "<appointment-details-module></appointment-details-module>" })
+            
+            .when("/appointments-day-list/:date",{ template: "<appointments-module></appointments-module>" })
             
             .otherwise({
                   template: "Other"
