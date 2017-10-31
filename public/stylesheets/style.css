@@ -11,3 +11,68 @@ a {
 	text-decoration: underline;
 	font-size: 20px;
 }
+
+
+
+
+
+
+/* Calendario */
+
+.calendar {
+    margin: auto;
+}
+
+.calendar .navigation {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.calendar .navigation .prev,
+.calendar .navigation .month,
+.calendar .navigation .next {
+    flex: 3;
+    text-align: center;
+}
+
+.calendar .navigation .prev i,
+.calendar .navigation .month span,
+.calendar .navigation .next i {
+    padding: 10px 0;
+}
+
+.calendar .calendar_header .calendar_day {
+    text-align: center;
+    border-bottom: #4a148c;
+}
+
+.calendar .calendar_body .calendar_day {
+    position: relative;
+    text-align: center;
+}
+
+.calendar .calendar_body .calendar_day .number_day {
+    margin-bottom: 5px;
+    color: #4a148c ;
+}
+
+.calendar .calendar_body .calendar_day.sunday .number_day {
+    color: #ce93d8;
+}
+
+.calendar .calendar_body .calendar_day .number_appointments {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #e1bee7;
+    border-radius: 2px 2px 0 0;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.calendar .calendar_body .calendar_day .number_appointments i {
+    font-size: 9px;
+}

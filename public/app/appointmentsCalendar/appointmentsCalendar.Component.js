@@ -7,7 +7,7 @@ angular.module('appointmentsCalendarModule')
 .component('appointmentsCalendarModule', {
     templateUrl:'app/appointmentsCalendar/appointmentsCalendar.html',
     controller: ($scope, $http)=> {
-        console.log("inicializando controlador calendario...");
+        
     }
 })
 .controller('appointmentCalendarController', ($http, $scope, $routeParams,$location, appointmentServicie)=> {
@@ -34,10 +34,10 @@ angular.module('appointmentsCalendarModule')
      	$scope.cells.push({date: "---"});
      }
      
-     appointmentServicie.getMonthAppointmentsByDate(currentMonth).then((response)=>{
+     appointmentServicie.getMonthAppointmentsByDate(currentMonth).then(function (response){
      
      	$scope.appointmentsByDate = response;
-         for (var m = moment(currentMonth); m.isBefore($scope.nextMonth); m.add(1, 'days')) {  // Pintamos las celdas que corresponden al mes y añadimos los datos a cada celda.
+         for (var m = moment($scope.currentMonth); m.isBefore($scope.nextMonth); m.add(1, 'days')) {  // Pintamos las celdas que corresponden al mes y añadimos los datos a cada celda.
          	var currentDate = m.format('YYYYMMDD');
          	$scope.cells.push({
          		date: m.toDate(), 
@@ -45,7 +45,20 @@ angular.module('appointmentsCalendarModule')
          		appointmentsCount: $scope.appointmentsByDate[currentDate] ? Object.keys($scope.appointmentsByDate[currentDate]).length : 0,
          	});
      	}
+         var dates = [];
+         
+         for (var i = 0; i < $scope.cells.length; i++) { //bucle multidimensional para controlar las semanas.
+        	 if (i % 7 == 0) {
+        	 	dates.push([]);
+        	 }
+        	 dates[dates.length-1].push($scope.cells[i]);
+         }
+         
+         return $scope.dates = dates;
      });
+     
+
+     
      $scope.openDayAppointments = (date) => {
          $location.path("/appointments-day-list/" + moment(date).format('YYYYMMDD'))
      };

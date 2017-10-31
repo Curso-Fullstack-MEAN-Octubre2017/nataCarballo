@@ -1,53 +1,45 @@
 <div ng-controller="appointmentCalendarController">
 		<h3>Calendario</h3>
+		
+		
+		
+<div class="calendar">	
+	
+	<nav class="purple lighten-2 ">
+    <div class="navegador ">
+      <a href="#!" class="brand-logo center" ><div class="current">{{currentMonth | date : 'MMMM yyyy'}}</a>
+      <ul class="left hide-on-med-and-down">
+		<li class="prev"><a href="appointments-calendar/{{prevMonth | date : 'yyyyMMdd'}}"><<</a></li>
+		<li class="next"><a href="appointments-calendar/{{nextMonth | date : 'yyyyMMdd'}}">>></a></li>
+      </ul>
+    </div>
+  	</nav>
 
-<div class="calendar">
-	<div class="navigation">
-		<div class="prev"><a href="appointments-calendar/{{prevMonth | date : 'yyyyMMdd'}}"><<</a></div>
-		<div class="current">{{currentMonth | date : 'MMMM yyyy'}}</div>
-		<div class="next"><a href="appointments-calendar/{{nextMonth | date : 'yyyyMMdd'}}">>></a></div>
+			    <table> 
+		    <thead>  
+			      <tr class="calendar_header">
+			        <th class="calendar_day monday">Lunes</th>
+	            <th class="calendar_day tuesday">Martes</th>
+	            <th class="calendar_day wednesday">Miércoles</th>
+	            <th class="calendar_day thursday">Jueves</th>
+	            <th class="calendar_day friday">Viernes</th>
+	            <th class="calendar_day saturday">Sábado</th>
+	            <th class="calendar_day sunday">Domingo</th>
+			      </tr>	    
+			 </thead>
+			 <tbody>
+				<tr class="calendar_body" data-ng-repeat="days in dates">			
+					<td class="calendar_day {{day.date | date:'EEEE' | lowercase}}" data-ng-repeat="day in days">
+						<span class="number_day">{{day.date | date: 'd'}}</span>
+						<span class="number_appointments" data-ng-click="openDayAppointments(day.date)">
+						{{day.appointmentsCount}}
+						</span>
+					</td>
+				</tr>
+				</tbody>
+			</table>	
 	</div>
-	<div class="header row">
-		<div class="column monday">Lunes</div>
-		<div class="column tuesday">Martes</div>
-		<div class="column wednesday">Miercoles</div>
-		<div class="column thursday">Jueves</div>
-		<div class="column friday">Viernes</div>
-		<div class="column saturday">Sabado</div>
-		<div class="column sunday">Domingo</div>
-	</div>
-	<div class="calendar_body">  
-<!-- 	> -->
-			
-		<div class="column {{cell.date | date:'EEEE' | lowercase}}" ng-repeat="cell in cells" ng-click="openDayAppointments(cell.date)">
-			{{cell.date | date:'dd-MM-yyyy'}} <br />
-			{{cell.appointmentsCount}}
-		</div>
-	</div>	
 </div>
 
 
-<style>
-.calendar {
-	width: 750px;
-}
-.calendar .navigation {
-  display: flex;
-}
-.calendar .navigation .current {
-  flex: 3;
-  text-align: center;
-}
-.calendar .row {
-}
-.calendar .header{
-}
-.calendar .column {
-	width: 13.50%;
-	display: inline-block;
-}
-.calendar_body .column {
-	/* height: 20px;*/
-	border: 1px solid red;
-}
-</style>
+
