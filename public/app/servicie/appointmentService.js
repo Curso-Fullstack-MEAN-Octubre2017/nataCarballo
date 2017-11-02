@@ -49,6 +49,9 @@ service._appointmentsMapByMonth = {};
 
 	    return d.promise;	
 	}
+	service.clearCache= ()=>{
+		service._appointmentsMapByMonth = {};
+	}
 
 	return service;
 });

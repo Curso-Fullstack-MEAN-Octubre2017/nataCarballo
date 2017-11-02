@@ -2,8 +2,9 @@
 
 <div ng-controller="CustomerDetailsController">
 											
-
-<h3> Cliente número:</h3>  {{customer._id}}<br><br><br><br><br>
+<div class="row">
+<div class="col s6">
+<h3> Cliente número:</h3>
 
 Dni:<input type="text" ng-model="customer.dni" placeholder="" /><br>
 Nombre:<input type="text" ng-model="customer.firstName" placeholder="" /><br>
@@ -13,9 +14,11 @@ Email:<input type="text" ng-model="customer.email" placeholder="" /><br>
 Note:<input type="text" ng-model="customer.note" placeholder="" /><br>
 <br><br><br><br><br>
 
-
-
-
+<input type="button" ng-show="isNew()" ng-click="submit()" value="Añadir nuevo Cliente">
+<input type="button" ng-show="!isNew()" ng-click="update()" value="modificar">
+</div>
+<div class="col s6">
+<h3> Lista mascotas:</h3>
 <table>
 		<thead>
 			<th>Nombre</th>
@@ -38,8 +41,7 @@ Note:<input type="text" ng-model="customer.note" placeholder="" /><br>
 	
 
 <a href="/customers/{{customer._id}}/pets/add">Añadir Mascota</a>
-<br>
-<input type="button" ng-show="isNew()" ng-click="submit()" value="guardar">
-<input type="button" ng-show="!isNew()" ng-click="update()" value="modificar">
+</div>
 
+</div>
 </div>

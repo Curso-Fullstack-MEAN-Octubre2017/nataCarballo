@@ -41,8 +41,8 @@
     			history.back();
     		});
     	}
-    
-    	
+
+
     	$scope.remove = ()=>{
      		console.log("Borrar mascota:", $scope.pet);
      		$http.delete("/api/pets/" + $scope.pet._id,$scope.pet).then((response)=>{
@@ -57,5 +57,5 @@
     	
 });
 
-     	
+
      	

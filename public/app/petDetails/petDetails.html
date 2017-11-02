@@ -1,22 +1,33 @@
 <div data-ng-controller="PetDetailsController">
-PetDetailsController: {{pet._id}}<br />
+
 <br><br><br><br><br>
-<h4 class="title">petstore</h4>
+<h3 class="title">petstore</h3>
 
+<!-- directivas -->
 
-Nombre:<input type="text" data-ng-model="pet.name" placeholder="" /><br />
-Nacimiento:<input type="text" data-ng-model="pet.birthdate" placeholder="" /><br />
-Especie:<input type="text" data-ng-model="pet.specie" placeholder="" /><br />
-Raza:<input type="text" data-ng-model="pet.race" placeholder="" /><br />
-Chip:<input type="text" data-ng-model="pet.chipNumber" placeholder="" /><br />
-Foto:<input type="text" data-ng-model="pet.photoUrl" placeholder="" /><br />
-ID cliente:<input type="text" data-ng-model="pet.customerId" placeholder="" /><br />
-Descripci�n <textarea data-ng-model="pet.description"></textarea>
+<label-imput data-label="Nombre:" data-model="pet.name" placeholder=""/>
+
+<label-imput data-label="Nacimiento: " data-model="pet.birthdate" placeholder=""/>
+
+<label-imput data-label="Especie: " data-model="pet.specie" placeholder=""/>
+
+<label-imput data-label="Raza: " data-model="pet.race" placeholder=""/>
+
+<label-imput data-label="Chip: " data-model="pet.chipNumber" placeholder=""/>
+
+<label-imput data-label="Foto: " data-model="pet.photoUrl" placeholder=""/>
+
+<label-imput data-label="ID Cliente: " data-model="pet.customerId" placeholder=""/>
+
+<label-imput data-label="Descripción: " data-model="pet.description" placeholder=""/>
 
 <br /> <br />
 
-<input type="button" data-ng-show="isNew()" data-ng-click="submit()" value="añadir">
+
+<!-- <button-pet data-show="isNew()" data-click="submit()" data-value="añadir"> -->
 <input type="button" data-ng-show="!isNew()" data-ng-click="update()" value="modificar">
-<input type="button" data-ng-show="!isNew()" data-ng-click="remove()" value="borrar">
+
+<input type="button" data-ng-show="isNew()" data-ng-click="submit()" value="añadir">
+<!-- <input type="button" data-ng-show="!isNew()" data-ng-click="remove()" value="borrar"> -->
 
 </div>

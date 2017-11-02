@@ -2,34 +2,31 @@
 
 <div ng-controller="AppointmentDetailsController">
 	
-<!-- 									{{appointment._id}}	 -->
 
-<h5>Detalle cita: {{appointment.dateStart | date: 'HH:mm'}}h. del {{appointment.dateStart | date: 'dd/MM/y'}}</h5>
-<br><br><br>
-<br><br><br>
+<div data-ng-show="appointment.dateStart">
+	<h5>Detalle cita: {{appointment.dateStart | date: 'HH:mm'}}h. del {{appointment.dateStart | date: 'dd/MM/y'}}</h5>
+		<br><br><br><br><br><br>
 
-
-    Mascota:<select id="mi-select" class="browser-default" data-ng-model="appointment.petId._id" 
-			ng-options="pet._id as pet.name for pet in pets">
+	<div>
+    	Mascota:<select id="mi-select" class="browser-default" data-ng-model="appointment.petId._id" data-ng-options="pet._id as pet.name for pet in pets">
 	        <option value="" disabled selected>Selecciona una mascota</option>
-	    </select><br>
+	        	</select><br>
 
-    Estado de la cita:<select id="mi-select" class="browser-default" data-ng-model="appointment.status">
-	        		<option value="" disabled selected>Selecciona un estado</option>
-	        		<option value="-1">Cancelado</option>
-	       			<option value="0">Pendiente</option>
-	        		<option value="1">En Curso</option>
-	        		<option value="2">Completado</option>
-	    		 </select><br>
-
-
-
-<br>
-<input type="button" data-ng-show="!isNew()" ng-click="update()" value="modificar">
-<input type="button" data-ng-show="isNew()" ng-click="submit()" value="añadir">
-<input type="button" ng-click="cancel()" value="Cancelar">
-<input type="button" ng-click="remove()" value="Delete">
-
+    	Estado de la cita:<select id="mi-select" class="browser-default" data-ng-model="appointment.status">
+	        				<option value="" disabled selected>Selecciona un estado</option>
+	        				<option value="Cancelado">Cancelado</option>
+	       					<option value="Pendiente">Pendiente</option>
+	        				<option value="En Curso">En Curso</option>
+	        				<option value="Completado">Completado</option>
+	    				 </select><br><br>
+	    				 
+	    				 
+		<input type="button" data-ng-show="!isNew()" ng-click="update()" value="modificar">
+		<input type="button" data-ng-show="isNew()" ng-click="submit()" value="añadir">
+		<input type="button" ng-click="cancel()" value="Cancelar">
+		<!-- <input type="button" ng-click="remove()" value="Delete"> -->
+	</div>
+	</div>
 </div>
 
 

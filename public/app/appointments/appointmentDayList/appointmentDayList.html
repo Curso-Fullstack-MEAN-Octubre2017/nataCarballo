@@ -1,7 +1,7 @@
 
 		<h3>Horario</h3>
 
-<table>
+<table class="responsive-table bordered centered highlight">
 		<tr>
 			<th class="deep-purple-text subrayado" >Hora</th>
 			<th class="deep-purple-text subrayado">Mascota</th>
@@ -11,13 +11,13 @@
 		
 		
 		
-		<tr ng-repeat="x in timetable">
+		<tr data-ng-repeat="x in timetable">
 			<td class="deep-purple-text">{{x.hour}}</td> 
-				<td><span ng-show="x.appointment">{{x.appointment.petId.name}}<span></td>
-				<td><span ng-show="x.appointment">{{x.appointment.status}}<span></td>
+				<td><span data-ng-show="x.appointment">{{x.appointment.petId.name}}<i class="material-icons deep-purple-text">pets</i><span></td>
+				<td><span data-ng-show="x.appointment">{{x.appointment.status}}<span></td>
 			<td>
-				<a  ng-show="x.appointment" ng-click="modificarCita(x.appointment._id)"><i class="material-icons deep-purple-text">create</i></a>
-				<a  ng-show="!x.appointment" ng-click="crearCita()"><i class="material-icons deep-purple-text">add_box</i></a>
+				<a  data-ng-show="x.appointment" data-ng-click="editAppointment(x.appointment._id)"><i class="material-icons deep-purple-text">create</i></a>
+				<a  data-ng-show="!x.appointment" data-ng-click="addAppointment(day + '-' + x.hour)"><i class="material-icons deep-purple-text">add_box</i></a>
 			</td>
 		</tr>
 

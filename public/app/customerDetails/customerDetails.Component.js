@@ -10,9 +10,9 @@
          }
      })
     .controller('CustomerDetailsController', ($http, $scope, $routeParams)=> {
-     	console.log("inicializando el CustomerDetailsController...");
-   	
-     	if(isNaN(+$routeParams.id)) {
+     	console.log("inicializando el controlador de detalles cliente...");
+
+     	if(isNaN(+$routeParams.id)) { //comprobamos si viene con id, si es así cargamos los datos.
 	    	$http.get("/api/customers/" + $routeParams.id).then((response)=> {
  	    		console.log("Response /api/customers/" + $routeParams.id, response);
  	    		$scope.customer = response.data;
@@ -21,23 +21,21 @@
  	    		console.log("Response /api/customers/" + $routeParams.id + "/pets", response);
  	    		$scope.customerPets = response.data;
  	    	});	    	
-     	} else {
+     	} else { //sino inicializamos para guardar uno nuevo
      		$scope.customer = {};
      		$scope.customerPets = [];
      	}
  
+     	//añadir nuevo cliente
+     	
      	$scope.submit =()=> {
-     		
-//     		const validationErrors = Validators.validateCustomer($scope.customer);
-//    		if(validationErrors) {
-//    			return alert(JSON.stringify(validationErrors));
-//    		} 
-//    		
+     		 		
      		console.log("añadir customer:", $scope.customer);
      		$http.post("/api/customers", $scope.customer).then((response)=>{
      			$scope.customer = response.data;
      			console.log("Nuevo cliente guardado");
      			history.back();
+     			
      		});
      	}
  
@@ -55,4 +53,6 @@
      		return $scope.customer === undefined || $scope.customer._id === undefined;
      	}
      });
+
+     	
  

@@ -7,43 +7,56 @@ angular.module('appointmentDetailsModule', []);
              console.log("Incializando detalles cita...");
          }
      })
-     .controller('AppointmentDetailsController', ($http, $scope)=> {
+     .controller('AppointmentDetailsController', ($http, $scope, appointmentServicie)=> {
      	console.log("inicializando el AppointmentDetailsController...");
      	
-     	$scope.$on("appointments:modificarCita", (eventos, datos)=>{
      	
-     	if(datos["id"]) {
+     	$http.get("api/pets").then((response)=>{
+	   		  $scope.pets = response.data; 
+     	});
+     
+     	$scope.$on("appointments:showAppointment", function(event, data){
+     	
+     		if(data.id){
      		
-	    	$http.get("/api/appointments/" + datos["id"]).then((response)=> {
- 	    		console.log("Response /api/appointments/" + datos["id"] , response);
+	    	$http.get("api/appointments/" + data.id).then(function(response) {
+ 	    		console.log("Response api/appointments/" + data.id , response);
  	    		$scope.appointment = response.data;
  	    	});
-	    	
-     	} 
+     		}else{
      		
      		$scope.appointment = {};
      		
-     		$scope.appointment.dateStart= moment(datos["date"], 'YYYYMMDDhh:mm').toDate();
-     		$scope.appointment.dateEnd= moment(datos["date"],'YYYYMMDDhh:mm' ).add(30,'m').toDate();
+     		$scope.appointment.dateStart= moment(data.datetime, 'YYYYMMDD-HH:mm').toDate();
+     		$scope.appointment.dateEnd= moment($scope.appointment.dateStart).add(30,'m').toDate();
 
-     	
-     	
-     	
-     		$http.get("api/pets").then((response)=>{
-     		   		  $scope.pets = response.data; 
-     		}); 
+     		}	 
      	});
 
-     	$scope.submit =()=> {
+     	$scope.submit = function(){
      		console.log("añadir cita:", $scope.appointment);
-     		$http.post("/api/appointments", $scope.appointment).then((response)=>{
+     		$http.post("api/appointments", $scope.appointment).then((response)=>{
      			$scope.appointment = response.data;
      			console.log("cita guardada");
-     			var date = moment($scope.appointment.dateStart).format("YYYYMMDD")
-     			$location.path("/appointments-day-list/" + date);
+     			appointmentServicie.clearCache();
+     			history.back();
      		});
+     		$scope.$emit("appointment:insertAppointmentClick", $scope.appointment);
      	}
    
+
+ 
+     	$scope.update = ()=> {
+     		console.log("Modificar cita:", $scope.appointment);
+     		$http.put("api/appointments/" + $scope.appointment._id, $scope.appointment).then((response)=>{
+     			$scope.appointment = response.data;
+     			console.log("cambios guardados");
+     			appointmentServicie.clearCache();
+     			history.back();
+     		});
+     		$scope.$emit("appointment:updateAppointmentClick", $scope.appointment);
+     	}
+     	
      	$scope.remove = ()=> {
     		if(confirm("¿seguro?")) {
     			var date = moment($scope.appointment.dateStart).format("YYYYMMDD");
@@ -54,22 +67,12 @@ angular.module('appointmentDetailsModule', []);
 					});
 				}
     	};
- 
-     	$scope.update = ()=> {
-     		console.log("Modificar cita:", $scope.appointment);
-     		$http.put("/api/appointments/" + $scope.appointment._id, $scope.appointment).then((response)=>{
-     			$scope.appointment = response;
-     			console.log("cambios guardados");
-     			history.back();//volver atras en el historial
-     		});
-     	}
+    	
      	$scope.isNew = ()=> {
      				return $scope.appointment === undefined || $scope.appointment._id === undefined;
      		        }
      	
-     	$scope.cancel = ()=> {
-    		history.back();
-    	};
+     	$scope.cancel = ()=> {    history.back();    };
      	
      });
      
