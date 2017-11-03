@@ -251,9 +251,17 @@ https://github.com/Curso-Fullstack-MEAN-Octubre2017/nataCarballo/blob/d3b1528d27
 
 ## Oct 31 2017
 
-- validaciones
+- Validaciones
 
 https://github.com/Curso-Fullstack-MEAN-Octubre2017/nataCarballo/blob/d3b1528d27047a3c91a9ffe484ab2355fee5755c/public/app/validation/validators.js#L3
+
+## Nov 2017
+
+- Directivas
+
+https://github.com/Curso-Fullstack-MEAN-Octubre2017/nataCarballo/blob/master/public/app/directives/directives.js
+
+
 
 #Gestión de clientes y mascotas
 
@@ -263,17 +271,23 @@ https://github.com/Curso-Fullstack-MEAN-Octubre2017/nataCarballo/tree/master/pub
 
 ![Modelo de Datos](https://github.com/Curso-Fullstack-MEAN-Octubre2017/nataCarballo/blob/master/public/image/image4.png)
 
+
+
 ## Detalle Cliente con lista de sus mascotas
 
 https://github.com/Curso-Fullstack-MEAN-Octubre2017/nataCarballo/tree/master/public/app/customerDetails
 
 ![Modelo de Datos](https://github.com/Curso-Fullstack-MEAN-Octubre2017/nataCarballo/blob/master/public/image/image7.png)
 
+
+
 ## Detalle mascota
 
 https://github.com/Curso-Fullstack-MEAN-Octubre2017/nataCarballo/tree/master/public/app/petDetails
 
 ![Modelo de Datos](https://github.com/Curso-Fullstack-MEAN-Octubre2017/nataCarballo/blob/master/public/image/image6.png)
+
+
 
 ## Gestion de citas
 
@@ -282,6 +296,8 @@ https://github.com/Curso-Fullstack-MEAN-Octubre2017/nataCarballo/tree/master/pub
 https://github.com/Curso-Fullstack-MEAN-Octubre2017/nataCarballo/tree/master/public/app/appointmentsCalendar
 
 ![Modelo de Datos](https://github.com/Curso-Fullstack-MEAN-Octubre2017/nataCarballo/blob/master/public/image/image5.png)
+
+
 
 # Horarios y Detalles Citas
 
